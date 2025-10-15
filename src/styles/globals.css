@@ -1,3 +1,56 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors */
+    --primary: #237AF2;
+    --primary-hover: #1a5fd9;
+    --primary-pressed: #0d4bc2;
+    --primary-disabled: #DADEE3;
+
+    /* Semantic Colors */
+    --info: #3B82F6;
+    --success: #10B981;
+    --warning: #F59E0B;
+    --error: #EF4444;
+
+    /* Gray Scale */
+    --white: #FFFFFF;
+    --black: #141618;
+    --gray60: #606A76;
+    --gray: #8A8F95;
+    --gray-light: #DADEE3;
+    --gray-bg: #F2F4F6;
+  }
+
+  * {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+
+  body {
+    @apply font-sans;
+  }
+}
+
+@layer utilities {
+  .max-w-mobile {
+    max-width: 480px;
+  }
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out;
+  }
+} 

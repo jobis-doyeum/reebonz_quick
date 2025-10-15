@@ -1,9 +1,9 @@
 {
-  "name": ">-reebonz_szs",
+  "name": "reebonz-szs",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "리본즈 삼쩜삼 �� 시너지 테스트",
+  "description": "리본즈 삼쩜삼 �� 시너지 테스트",
   "author": "Doy",
   "license": "MIT",
   "scripts": {
