@@ -3,6 +3,39 @@
 > **잠자고 있는 명품, 돈이 된다고?**
 > 삼쩜삼 고객을 위한 새로운 가치 제안 - 리본즈와 함께하는 빈티지 명품 판매
 
+## 📊 Google Analytics 이벤트
+
+### 추적 중인 이벤트 (3개)
+
+1. **reebonz_landing_pv**
+   - 랜딩 페이지 로드 시 자동 추적
+   - Parameters: 없음
+
+2. **reebonz_landing_bottomsheet_view**
+   - 하단 고정 버튼 클릭 시
+   - 바텀시트 열릴 때
+   - Parameters:
+     ```json
+     {
+       "trigger": "fixed_bottom_button"
+     }
+     ```
+
+3. **reebonz_landing_cta_click**
+   - "네, 준비됐어요!" 버튼 클릭 시
+   - 리본즈 페이지로 이동할 때
+   - Parameters:
+     ```json
+     {
+       "button_location": "bottom_sheet",
+       "button_text": "네, 준비됐어요!"
+     }
+     ```
+
+**GA 측정 ID**: `G-3VY48K6TPQ`
+
+---
+
 ## 📋 프로젝트 개요
 
 본 프로젝트는 삼쩜삼 고객들에게 빈티지 명품 판매라는 새로운 가치를 제공하기 위한 랜딩 페이지입니다. 리본즈의 명품 커머스 전문성을 통해 고객들이 안전하고 간편하게 명품을 판매할 수 있도록 연결합니다.

@@ -1,14 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, BottomSheet } from '../components/ui';
+import { trackEvent } from '../utils/analytics';
 
 const HomePage = () => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
+  // 페이지 로드 시 페이지뷰 추적
+  useEffect(() => {
+    trackEvent('reebonz_landing_pv');
+  }, []);
+
   const handleCTA = () => {
+    // 리본즈 이동 클릭 추적
+    trackEvent('reebonz_landing_cta_click', {
+      button_location: 'bottom_sheet',
+      button_text: '네, 준비됐어요!'
+    });
     window.location.href = 'https://www.reebonz.co.kr/page/vintage-service';
   };
 
   const handleOpenBottomSheet = () => {
+    // 바텀시트 열기 추적
+    trackEvent('reebonz_landing_bottomsheet_view', {
+      trigger: 'fixed_bottom_button'
+    });
     setIsBottomSheetOpen(true);
   };
 
@@ -128,28 +143,12 @@ const HomePage = () => {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-8 px-4">
-        <div className="max-w-mobile mx-auto">
-          <div className="mb-6">
-            <h3 className="text-lg font-bold mb-2 font-sans">삼쩜삼 x 리본즈</h3>
-            <p className="text-gray-400 text-sm font-sans">
-              빈티지 명품 판매의 새로운 기준
-            </p>
-          </div>
-          <div className="mb-6">
-            <h4 className="font-bold mb-2 text-sm font-sans">문의</h4>
-            <p className="text-gray-400 text-sm mb-2 font-sans">Person@email.com</p>
-            <a
-              href="https://www.reebonz.co.kr/page/vintage-service"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-sm font-sans"
-            >
-              리본즈 서비스 →
-            </a>
-          </div>
-          <div className="border-t border-gray-800 pt-4 text-center">
-            <p className="text-gray-400 text-xs font-sans">&copy; 2025 삼쩜삼 x 리본즈. All rights reserved.</p>
-          </div>
+        <div className="max-w-mobile mx-auto text-center">
+          <h3 className="text-lg font-bold mb-2 font-sans">삼쩜삼 x 리본즈</h3>
+          <p className="text-gray-400 text-sm mb-6 font-sans">
+            빈티지 명품 판매의 새로운 기준
+          </p>
+          <p className="text-gray-400 text-xs font-sans">&copy; 2025 삼쩜삼 x 리본즈. All rights reserved.</p>
         </div>
       </footer>
 
