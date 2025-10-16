@@ -19,25 +19,28 @@ const HomePage = () => {
       button_text: "숨은 자산 찾기",
     });
 
-    // 삼쩜삼 웹뷰 환경인지 확인
-    if (isSzsWebView()) {
-      // 삼쩜삼 앱에서 실행 중 - 환경별 딥링크 사용
-      const env = getSzsEnvironment();
-      let deepLink: string;
+    // GA 이벤트 전송 시간 확보 후 이동
+    setTimeout(() => {
+      // 삼쩜삼 웹뷰 환경인지 확인
+      if (isSzsWebView()) {
+        // 삼쩜삼 앱에서 실행 중 - 환경별 딥링크 사용
+        const env = getSzsEnvironment();
+        let deepLink: string;
 
-      if (env === "dev") {
-        deepLink = LANDING_LINKS.SZS_DEV;
-      } else if (env === "stage") {
-        deepLink = LANDING_LINKS.SZS_STAGE;
+        if (env === "dev") {
+          deepLink = LANDING_LINKS.SZS_DEV;
+        } else if (env === "stage") {
+          deepLink = LANDING_LINKS.SZS_STAGE;
+        } else {
+          deepLink = LANDING_LINKS.SZS_PROD;
+        }
+
+        window.location.href = deepLink;
       } else {
-        deepLink = LANDING_LINKS.SZS_PROD;
+        // 일반 웹/모바일 웹 - 직접 이동
+        window.location.href = LANDING_LINKS.REEBONZ_SHARING;
       }
-
-      window.location.href = deepLink;
-    } else {
-      // 일반 웹/모바일 웹 - 직접 이동
-      window.location.href = LANDING_LINKS.REEBONZ_SHARING;
-    }
+    }, 100);
   };
 
   return (
