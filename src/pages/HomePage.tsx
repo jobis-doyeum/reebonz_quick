@@ -1,14 +1,12 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Lottie from "lottie-react";
-import { Button, BottomSheet } from "../components/ui";
+import { Button } from "../components/ui";
 import { trackEvent } from "../utils/analytics";
 import { isSzsWebView, getSzsEnvironment } from "../utils/szsWebViewBridge";
 import { LANDING_LINKS } from "../config/links";
 import luxuryAnimation from "../assets/images/ani_Luxury-landing.json";
 
 const HomePage = () => {
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-
   // 페이지 로드 시 페이지뷰 추적
   useEffect(() => {
     trackEvent("reebonz_landing_pv");
@@ -17,8 +15,8 @@ const HomePage = () => {
   const handleCTA = () => {
     // 리본즈 이동 클릭 추적
     trackEvent("reebonz_landing_cta_click", {
-      button_location: "bottom_sheet",
-      button_text: "네, 준비됐어요!",
+      button_location: "fixed_bottom",
+      button_text: "숨은 자산 찾기",
     });
 
     // 삼쩜삼 웹뷰 환경인지 확인
@@ -27,9 +25,9 @@ const HomePage = () => {
       const env = getSzsEnvironment();
       let deepLink: string;
 
-      if (env === 'dev') {
+      if (env === "dev") {
         deepLink = LANDING_LINKS.SZS_DEV;
-      } else if (env === 'stage') {
+      } else if (env === "stage") {
         deepLink = LANDING_LINKS.SZS_STAGE;
       } else {
         deepLink = LANDING_LINKS.SZS_PROD;
@@ -40,18 +38,6 @@ const HomePage = () => {
       // 일반 웹/모바일 웹 - 직접 이동
       window.location.href = LANDING_LINKS.REEBONZ_SHARING;
     }
-  };
-
-  const handleOpenBottomSheet = () => {
-    // 바텀시트 열기 추적
-    trackEvent("reebonz_landing_bottomsheet_view", {
-      trigger: "fixed_bottom_button",
-    });
-    setIsBottomSheetOpen(true);
-  };
-
-  const handleCloseBottomSheet = () => {
-    setIsBottomSheetOpen(false);
   };
 
   return (
@@ -81,18 +67,19 @@ const HomePage = () => {
       {/* Value Highlights*/}
       <section className="py-6 px-4 bg-white">
         <div className="max-w-mobile mx-auto space-y-2.5">
+          {/* Value 2*/}
+          <div className="flex items-center gap-2">
+            <span className="text-[var(--primary)] text-lg font-bold">✓</span>
+            <p className="text-base text-gray-700 font-sans">
+              판매 대행 누적 계약 건수 25,044건
+            </p>
+          </div>
           {/* Value 1 */}
           <div className="flex items-center gap-2">
             <span className="text-[var(--primary)] text-lg font-bold">✓</span>
             <p className="text-base text-gray-700 font-sans">
-              쓰지 않는 명품을 공유하고
+              명품 대여 시 평균 30% 수익율
             </p>
-          </div>
-
-          {/* Value 2*/}
-          <div className="flex items-center gap-2">
-            <span className="text-[var(--primary)] text-lg font-bold">✓</span>
-            <p className="text-base text-gray-700 font-sans">평균 30% 수익율을 받아보세요</p>
           </div>
         </div>
       </section>
@@ -228,60 +215,11 @@ const HomePage = () => {
       {/* Fixed Bottom Button */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg z-30">
         <div className="max-w-mobile mx-auto">
-          <Button size="large" onClick={handleOpenBottomSheet} fullWidth>
-            명품 공유하고 수익 내기
+          <Button size="large" onClick={handleCTA} fullWidth>
+            숨은 자산 찾기
           </Button>
         </div>
       </div>
-
-      {/* Bottom Sheet */}
-      <BottomSheet isOpen={isBottomSheetOpen} onClose={handleCloseBottomSheet}>
-        <div className="text-center">
-          <div className="mb-6">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg
-                className="w-8 h-8 text-[var(--primary)]"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2 font-sans">
-              잠시만요!
-            </h3>
-            <p className="text-base text-gray-600 mb-6 font-sans">
-              명품 사진이 준비되었나요?
-            </p>
-          </div>
-
-          <div className="space-y-3">
-            <Button
-              size="large"
-              variant="outline-gray"
-              onClick={handleCloseBottomSheet}
-              fullWidth
-            >
-              아직이요
-            </Button>
-            <Button size="large" onClick={handleCTA} fullWidth>
-              네, 준비됐어요!
-            </Button>
-          </div>
-        </div>
-      </BottomSheet>
     </div>
   );
 };

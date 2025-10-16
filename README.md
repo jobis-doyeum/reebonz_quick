@@ -1,34 +1,24 @@
-# 삼쩜삼 x 리본즈 빈티지 명품 판매 서비스 랜딩 페이지
+# 삼쩜삼 x 리본즈 명품 공유 서비스 랜딩 페이지
 
 > **잠자고 있는 명품, 돈이 된다고?**
-> 삼쩜삼 고객을 위한 새로운 가치 제안 - 리본즈와 함께하는 빈티지 명품 판매
+> 삼쩜삼 고객을 위한 새로운 가치 제안 - 리본즈 공유로 명품을 공유하고 수익을 창출하세요
 
 ## 📊 Google Analytics 이벤트
 
-### 추적 중인 이벤트 (3개)
+### 추적 중인 이벤트 (2개)
 
 1. **reebonz_landing_pv**
    - 랜딩 페이지 로드 시 자동 추적
    - Parameters: 없음
 
-2. **reebonz_landing_bottomsheet_view**
-   - 하단 고정 버튼 클릭 시
-   - 바텀시트 열릴 때
+2. **reebonz_landing_cta_click**
+   - "숨은 자산 찾기" 버튼 클릭 시
+   - 리본즈 빈티지 서비스 페이지로 이동할 때
    - Parameters:
      ```json
      {
-       "trigger": "fixed_bottom_button"
-     }
-     ```
-
-3. **reebonz_landing_cta_click**
-   - "네, 준비됐어요!" 버튼 클릭 시
-   - 리본즈 페이지로 이동할 때
-   - Parameters:
-     ```json
-     {
-       "button_location": "bottom_sheet",
-       "button_text": "네, 준비됐어요!"
+       "button_location": "fixed_bottom",
+       "button_text": "숨은 자산 찾기"
      }
      ```
 
@@ -38,33 +28,30 @@
 
 ## 📋 프로젝트 개요
 
-본 프로젝트는 삼쩜삼 고객들에게 빈티지 명품 판매라는 새로운 가치를 제공하기 위한 랜딩 페이지입니다. 리본즈의 명품 커머스 전문성을 통해 고객들이 안전하고 간편하게 명품을 판매할 수 있도록 연결합니다.
+본 프로젝트는 삼쩜삼 고객들에게 명품 공유라는 새로운 가치를 제공하기 위한 랜딩 페이지입니다. 리본즈의 명품 커머스 전문성을 통해 고객들이 안전하고 간편하게 명품을 공유하고 수익을 창출할 수 있도록 연결합니다.
 
 ### 🎯 주요 목표
-- 삼쩜삼 고객들에게 명품 판매라는 새로운 가치 제공
-- 고객의 빈티지 명품 판매 니즈 파악 및 서비스 관심 유도
-- 리본즈 명품 판매 서비스로의 자연스러운 전환 유도
+- 삼쩜삼 고객들에게 명품 공유라는 새로운 가치 제공
+- 안 쓰는 명품을 공유하고 평균 30% 수익률 제공
+- 리본즈 명품 공유 서비스로의 자연스러운 전환 유도
 
 ## 🤝 삼쩜삼 x 리본즈 협업 가치
 
 | 삼쩜삼 | 리본즈 |
 |--------|--------|
-| 고객에게 새로운 가치 제공 | 전문적인 명품 감정 및 검수 |
-| 신뢰할 수 있는 서비스 연결 | 안전하고 투명한 거래 플랫폼 |
+| 고객에게 새로운 수익 창출 기회 제공 | 전문적인 명품 감정 및 보관 |
+| 신뢰할 수 있는 서비스 연결 | 안전하고 투명한 공유 플랫폼 |
 
 ## ✨ 서비스 특장점
 
-### 1️⃣ 간편한 판매
-명품 사진 등록부터 판매까지 클릭 몇 번으로 완료
+### 1️⃣ 무료 감정
+전문가의 정확한 가치 평가를 무료로 제공
 
-### 2️⃣ 전문 감정
-리본즈 전문가의 꼼꼼한 감정으로 믿을 수 있는 가치 평가
+### 2️⃣ 평균 30% 수익률
+안정적이고 높은 수익을 기대할 수 있어요
 
-### 3️⃣ 신뢰할 수 있는 플랫폼
-삼쩜삼이 검증한 안전한 명품 거래 파트너
-
-### 4️⃣ 투명한 거래
-명확한 프로세스와 공정한 가격 책정
+### 3️⃣ 안전한 보관
+리본즈에서 책임지고 안전하게 보관 관리
 
 ## 📱 페이지 구성
 
@@ -109,9 +96,15 @@
 
 ## 🔗 서비스 연결
 
-**리본즈 서비스 페이지**: [https://www.reebonz.co.kr/page/vintage-service](https://www.reebonz.co.kr/page/vintage-service)
+**리본즈 빈티지 서비스**: [https://www.reebonz.co.kr/page/vintage-service](https://www.reebonz.co.kr/page/vintage-service)
 
-랜딩 페이지 내 **'내 명품 가치 확인하기'** 버튼 클릭 시 리본즈 페이지로 이동하여 회원가입 및 명품 등록 과정을 진행합니다.
+### 삼쩜삼 앱 연동
+삼쩜삼 WebView 환경에서는 자동으로 환경별 딥링크를 사용합니다:
+- **Dev**: `szsappdev://3o3.co.kr?type=WEB&style=BROWSER&landing=https://www.reebonz.co.kr/page/vintage-service`
+- **Stage**: `szsappstage://3o3.co.kr?type=WEB&style=BROWSER&landing=https://www.reebonz.co.kr/page/vintage-service`
+- **Prod**: `szsapp://3o3.co.kr?type=WEB&style=BROWSER&landing=https://www.reebonz.co.kr/page/vintage-service`
+
+일반 웹/모바일 웹에서는 직접 URL로 이동합니다.
 
 ## 🚀 시작하기
 
@@ -138,6 +131,9 @@ npm run preview
 - **Vite** - 빠른 빌드 도구
 - **Tailwind CSS** - 유틸리티 기반 스타일링
 - **React Router** - 라우팅
+- **Lottie** - 애니메이션
+- **Google Analytics** - 이벤트 트래킹
+- **SZS WebView Bridge** - 삼쩜삼 앱 연동
 
 ## 📂 폴더 구조
 
@@ -145,20 +141,46 @@ npm run preview
 reebonz_quick/
 ├── src/
 │   ├── components/      # 재사용 컴포넌트
+│   │   └── ui/         # UI 컴포넌트 (Button, BottomSheet 등)
 │   ├── pages/          # 페이지 컴포넌트
+│   │   └── HomePage.tsx
 │   ├── utils/          # 유틸리티 함수
+│   │   ├── analytics.ts       # GA 이벤트 트래킹
+│   │   └── szsWebViewBridge.ts # 삼쩜삼 WebView 연동
+│   ├── config/         # 설정 파일
+│   │   └── links.ts    # 외부 링크 설정
+│   ├── assets/         # 정적 리소스
+│   │   └── images/     # 이미지 및 Lottie 애니메이션
 │   ├── styles/         # 스타일 파일
 │   └── App.tsx         # 메인 앱
 ├── public/             # 정적 파일
-└── index.html          # HTML 엔트리포인트
+├── .env                # 환경변수 (GA ID 등)
+└── index.html          # HTML 엔트리포인트 (GA 스크립트 포함)
 ```
 
 ## 📊 기대 효과
 
-1. 삼쩜삼 고객에게 명품 판매라는 새로운 가치 제공
-2. 고객의 명품 판매 니즈 및 서비스 관심도 데이터 확보
-3. 리본즈 플랫폼으로의 신규 고객 유입 증대
-4. 빈티지 명품 판매 시장 활성화 기여
+1. 삼쩜삼 고객에게 명품 공유를 통한 새로운 수익 창출 기회 제공
+2. 평균 30% 수익률로 고객 자산 활용도 증대
+3. 리본즈 공유 플랫폼으로의 신규 고객 유입 증대
+4. 명품 공유 경제 시장 활성화 기여
+
+## 🎨 주요 기능
+
+### Lottie 애니메이션
+- Hero 섹션에 명품 가방 애니메이션 적용
+- 자동 재생 + 무한 루프
+- 생동감 있는 첫인상 제공
+
+### 삼쩜삼 앱 연동
+- WebView Bridge를 통한 자동 환경 감지
+- 환경별 딥링크 자동 분기 (dev/stage/prod)
+- 일반 웹에서는 직접 URL 이동
+
+### Google Analytics
+- 페이지 로드 자동 추적
+- CTA 버튼 클릭 추적
+- 사용자 행동 데이터 수집
 
 ## 📞 문의
 
