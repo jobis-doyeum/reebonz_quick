@@ -9,7 +9,16 @@ import luxuryAnimation from "../assets/images/ani_Luxury-landing.json";
 const HomePage = () => {
   // 페이지 로드 시 페이지뷰 추적
   useEffect(() => {
-    trackEvent("reebonz_landing_pv");
+    // gtag 로드 대기 후 이벤트 전송
+    const sendEvent = () => {
+      if (typeof window.gtag === 'function') {
+        trackEvent("reebonz_landing_pv");
+      } else {
+        // gtag 아직 로드 안 됐으면 100ms 후 재시도
+        setTimeout(sendEvent, 100);
+      }
+    };
+    sendEvent();
   }, []);
 
   const handleCTA = () => {
