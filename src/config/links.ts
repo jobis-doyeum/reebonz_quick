@@ -1,5 +1,6 @@
 // 랜딩 링크 설정
-const REEBONZ_VINTAGE_URL = 'https://www.reebonz.co.kr/page/vintage-service?utm_source=szs';
+
+const REEBONZ_VINTAGE_URL = 'https://www.reebonz.co.kr/page/vintage-service?utm_source=jobis&utm_medium=affiliate&utm_campaign=vs_affiliate_vip';
 
 export const LANDING_LINKS = {
   // 일반 웹/모바일 웹
