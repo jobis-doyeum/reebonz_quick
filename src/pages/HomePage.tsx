@@ -22,13 +22,14 @@ const HomePage = () => {
   }, []);
 
   const handleCTA = () => {
-    // 리본즈 이동 클릭 추적
+    // 리본즈 이동 클릭 추적 (beacon으로 확실하게 전송)
     trackEvent("reebonz_landing_cta_click", {
       button_location: "fixed_bottom",
       button_text: "숨은 자산 찾기",
+      transport_type: "beacon",
     });
 
-    // GA 이벤트 전송 시간 확보 후 이동 (300ms)
+    // beacon도 최소한의 시간 필요 (50ms면 충분)
     setTimeout(() => {
       // 삼쩜삼 웹뷰 환경인지 확인
       if (isSzsWebView()) {
@@ -49,7 +50,7 @@ const HomePage = () => {
         // 일반 웹/모바일 웹 - 직접 이동
         window.location.href = LANDING_LINKS.REEBONZ_SHARING;
       }
-    }, 300);
+    }, 50);
   };
 
   return (
