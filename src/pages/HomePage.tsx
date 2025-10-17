@@ -1,56 +1,30 @@
-import { useEffect } from "react";
 import Lottie from "lottie-react";
 import { Button } from "../components/ui";
-import { trackEvent } from "../utils/analytics";
 import { isSzsWebView, getSzsEnvironment } from "../utils/szsWebViewBridge";
 import { LANDING_LINKS } from "../config/links";
 import luxuryAnimation from "../assets/images/ani_Luxury-landing.json";
 
 const HomePage = () => {
-  // 페이지 로드 시 페이지뷰 추적
-  useEffect(() => {
-    // gtag 로드 대기 후 이벤트 전송
-    const sendEvent = () => {
-      if (typeof window.gtag === 'function') {
-        trackEvent("reebonz_landing_pv");
-      } else {
-        // gtag 아직 로드 안 됐으면 100ms 후 재시도
-        setTimeout(sendEvent, 100);
-      }
-    };
-    sendEvent();
-  }, []);
-
   const handleCTA = () => {
-    // 리본즈 이동 클릭 추적 (beacon으로 확실하게 전송)
-    trackEvent("reebonz_landing_cta_click", {
-      button_location: "fixed_bottom",
-      button_text: "숨은 자산 찾기",
-      transport_type: "beacon",
-    });
+    // 삼쩜삼 웹뷰 환경인지 확인
+    if (isSzsWebView()) {
+      // 삼쩜삼 앱에서 실행 중 - 환경별 딥링크 사용
+      const env = getSzsEnvironment();
+      let deepLink: string;
 
-    // beacon도 최소한의 시간 필요 (50ms면 충분)
-    setTimeout(() => {
-      // 삼쩜삼 웹뷰 환경인지 확인
-      if (isSzsWebView()) {
-        // 삼쩜삼 앱에서 실행 중 - 환경별 딥링크 사용
-        const env = getSzsEnvironment();
-        let deepLink: string;
-
-        if (env === "dev") {
-          deepLink = LANDING_LINKS.SZS_DEV;
-        } else if (env === "stage") {
-          deepLink = LANDING_LINKS.SZS_STAGE;
-        } else {
-          deepLink = LANDING_LINKS.SZS_PROD;
-        }
-
-        window.location.href = deepLink;
+      if (env === "dev") {
+        deepLink = LANDING_LINKS.SZS_DEV;
+      } else if (env === "stage") {
+        deepLink = LANDING_LINKS.SZS_STAGE;
       } else {
-        // 일반 웹/모바일 웹 - 직접 이동
-        window.location.href = LANDING_LINKS.REEBONZ_SHARING;
+        deepLink = LANDING_LINKS.SZS_PROD;
       }
-    }, 50);
+
+      window.location.href = deepLink;
+    } else {
+      // 일반 웹/모바일 웹 - 직접 이동
+      window.location.href = LANDING_LINKS.REEBONZ_SHARING;
+    }
   };
 
   return (
@@ -228,7 +202,14 @@ const HomePage = () => {
       {/* Fixed Bottom Button */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg z-30">
         <div className="max-w-mobile mx-auto">
-          <Button size="large" onClick={handleCTA} fullWidth>
+          <Button
+            size="large"
+            onClick={handleCTA}
+            fullWidth
+            data-gtm-event="cta_click"
+            data-gtm-button-text="숨은 자산 찾기"
+            data-gtm-button-location="fixed_bottom"
+          >
             숨은 자산 찾기
           </Button>
         </div>
