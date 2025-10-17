@@ -28,7 +28,7 @@ const HomePage = () => {
       button_text: "숨은 자산 찾기",
     });
 
-    // GA 이벤트 전송 시간 확보 후 이동
+    // GA 이벤트 전송 시간 확보 후 이동 (300ms)
     setTimeout(() => {
       // 삼쩜삼 웹뷰 환경인지 확인
       if (isSzsWebView()) {
@@ -49,7 +49,7 @@ const HomePage = () => {
         // 일반 웹/모바일 웹 - 직접 이동
         window.location.href = LANDING_LINKS.REEBONZ_SHARING;
       }
-    }, 100);
+    }, 300);
   };
 
   return (
